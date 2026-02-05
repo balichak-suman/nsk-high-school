@@ -2,10 +2,13 @@
 import json
 import os
 import requests
+from dotenv import load_dotenv
 from app import get_idle_seconds
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "your-api-key-here")
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+load_dotenv()
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_URL = os.getenv("GROQ_URL", "https://api.groq.com/openai/v1/chat/completions")
 SYSTEM_PROMPT = """
 you are an autonomous monitoring agent.
 

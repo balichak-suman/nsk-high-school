@@ -14,6 +14,40 @@ class DashboardApp {
         document.querySelectorAll('.menu-link').forEach(link => {
             link.addEventListener('click', (e) => this.switchTab(e));
         });
+
+        // Mobile sidebar toggle
+        const hamburger = document.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => this.toggleSidebar());
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            const sidebar = document.querySelector('.sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            if (sidebar && hamburger && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Close sidebar when a menu item is clicked (on mobile)
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const sidebar = document.querySelector('.sidebar');
+                if (window.innerWidth <= 768) {
+                    sidebar?.classList.remove('active');
+                    document.querySelector('.hamburger')?.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const hamburger = document.querySelector('.hamburger');
+        sidebar?.classList.toggle('active');
+        hamburger?.classList.toggle('active');
     }
 
     switchTab(e) {

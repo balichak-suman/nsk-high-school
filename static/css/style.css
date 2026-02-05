@@ -140,15 +140,27 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 5px;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
     background: white;
-    margin: 5px 0;
     transition: 0.3s;
     border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -1079,17 +1091,60 @@ table tbody tr:last-child td {
 }
 
 /* ==================== RESPONSIVE ==================== */
+/* ==================== RESPONSIVE DESIGN ==================== */
+/* Tablet & Small Screens (768px and below) */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+
+    .logo i {
+        font-size: 1.5rem;
+    }
+
     .hamburger {
         display: flex;
     }
 
     .nav-menu {
-        gap: 1rem;
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        gap: 0;
+        align-items: stretch;
     }
 
-    .nav-link {
-        font-size: 0.9rem;
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 1rem 0;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none !important;
+        background: rgba(0, 0, 0, 0.1);
+        min-width: auto;
+        box-shadow: none;
+    }
+
+    .dropdown-menu.active {
+        display: block !important;
+    }
+
+    .hero {
+        height: 400px;
     }
 
     .hero h2 {
@@ -1100,74 +1155,404 @@ table tbody tr:last-child td {
         font-size: 1rem;
     }
 
-    .about-content,
-    .contact-content,
-    .bus-tracking-content {
-        grid-template-columns: 1fr;
+    section {
+        padding: 3rem 1rem;
     }
 
+    section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Forms */
     .form-row {
         grid-template-columns: 1fr;
     }
 
+    .admission-form {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    /* Grids */
     .stats-grid,
     .alumni-grid,
-    .events-grid {
+    .events-grid,
+    .library-books {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .about-content,
+    .contact-content,
+    .bus-tracking-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-features {
         grid-template-columns: 1fr;
     }
 
+    /* Dashboard */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+        padding-top: 70px;
+        overflow-y: auto;
+        z-index: 998;
+        transition: 0.3s;
+    }
+
+    .sidebar.active {
+        left: 0;
     }
 
     .main-content {
         margin-left: 0;
+        padding: 1rem;
     }
 
     .topbar {
         flex-direction: column;
         gap: 1rem;
+        padding: 1rem;
     }
 
     .search-bar input {
         width: 100%;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr;
+    .topbar-right {
+        gap: 1rem;
+        flex-direction: column;
+        width: 100%;
     }
 
-    section h2 {
-        font-size: 1.75rem;
+    .topbar-right a,
+    .topbar-right .user-profile {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tab-content {
+        padding: 1rem;
+    }
+
+    /* Tables */
+    table {
+        font-size: 0.85rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .notification {
+        max-width: calc(100% - 40px);
+        right: 20px;
+        top: 100px;
     }
 }
 
+/* Mobile Screens (480px and below) */
 @media (max-width: 480px) {
-    .container {
-        padding: 0 1rem;
+    body {
+        font-size: 14px;
+    }
+
+    .navbar {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .logo {
+        gap: 0.25rem;
+    }
+
+    .logo h1 {
+        font-size: 1rem;
+        display: none;
+    }
+
+    .logo i {
+        font-size: 1.2rem;
+    }
+
+    .nav-btn {
+        display: none;
     }
 
     .hero {
-        height: 400px;
+        height: 300px;
     }
 
     .hero h2 {
         font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
     }
 
     section {
-        padding: 2rem 0;
+        padding: 2rem 0.5rem;
     }
 
-    .stat-card,
+    section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    /* Stat Cards */
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .stat-card i {
+        font-size: 2rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    /* Forms */
+    .admission-form {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+
+    /* Cards */
     .event-card,
-    .book-card {
-        margin: 0 auto;
+    .book-card,
+    .alumni-card {
+        margin: 0;
     }
 
-    .dropdown-menu {
-        left: -100px;
+    .event-image,
+    .book-cover,
+    .alumni-photo {
+        height: 150px;
+        font-size: 2rem;
+    }
+
+    .event-content,
+    .book-info,
+    .alumni-info {
+        padding: 1rem;
+    }
+
+    .feature {
+        padding: 1rem;
+    }
+
+    .feature i {
+        font-size: 1.5rem;
+    }
+
+    /* Dashboard */
+    .sidebar {
+        width: 200px;
+        padding-top: 60px;
+    }
+
+    .sidebar .logo {
+        padding: 0 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .sidebar .logo span {
+        display: none;
+    }
+
+    .sidebar-menu li a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .sidebar-menu li a i {
+        min-width: 20px;
+    }
+
+    .dashboard-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .dashboard-card i {
+        font-size: 1.75rem;
+    }
+
+    .card-number {
+        font-size: 1.5rem;
+    }
+
+    .card-label {
+        font-size: 0.75rem;
+    }
+
+    /* Tables - Make them scrollable */
+    .fees-table {
+        overflow-x: auto;
+    }
+
+    table {
+        font-size: 0.75rem;
+        min-width: 100%;
+    }
+
+    table th,
+    table td {
+        padding: 0.5rem;
+    }
+
+    /* Contact Info */
+    .info-card {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .info-card i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-section h4 {
+        font-size: 0.9rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+        font-size: 0.8rem;
+    }
+
+    .footer-content {
+        gap: 1rem;
+    }
+
+    .social-links {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    /* Notifications */
+    .notification {
+        max-width: calc(100% - 20px);
+        right: 10px;
+        top: 80px;
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    /* Bus Tracking */
+    .bus-map {
+        min-height: 200px;
+    }
+
+    #map-placeholder i {
+        font-size: 2rem;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .contact-form button {
+        width: 100%;
+    }
+}
+
+/* Extra Small Screens (320px and below) */
+@media (max-width: 320px) {
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero p {
+        font-size: 0.8rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    section h2 {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.4rem;
     }
 }

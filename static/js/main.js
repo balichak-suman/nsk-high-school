@@ -25,6 +25,8 @@ class NSKKSchoolApp {
                     e.preventDefault();
                     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                     e.target.classList.add('active');
+                    // Close mobile menu
+                    this.closeMobileMenu();
                 }
             });
         });
@@ -39,11 +41,29 @@ class NSKKSchoolApp {
 
         // Hamburger menu
         document.querySelector('.hamburger')?.addEventListener('click', () => this.toggleMobileMenu());
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            if (navMenu && hamburger && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                this.closeMobileMenu();
+            }
+        });
     }
 
     toggleMobileMenu() {
         const navMenu = document.querySelector('.nav-menu');
-        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        const hamburger = document.querySelector('.hamburger');
+        navMenu?.classList.toggle('active');
+        hamburger?.classList.toggle('active');
+    }
+
+    closeMobileMenu() {
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        navMenu?.classList.remove('active');
+        hamburger?.classList.remove('active');
     }
 
     async loadStats() {

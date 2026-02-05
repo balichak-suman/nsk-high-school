@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSKK High School - Excellence in Education</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>NSKK High School</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#admission">Admission</a></li>
+                        <li><a href="#bus-tracking">Bus Tracking</a></li>
+                        <li><a href="#fees">Fees Portal</a></li>
+                        <li><a href="#library">Digital Library</a></li>
+                        <li><a href="#events">Events</a></li>
+                    </ul>
+                </li>
+                <li><a href="#alumni" class="nav-link">Alumni</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/dashboard" class="nav-link nav-btn">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Welcome to NSKK High School</h2>
+            <p>Empowering Students to Excel Academically and Personally</p>
+            <button class="btn btn-primary" onclick="document.getElementById('admission').scrollIntoView()">Apply Now</button>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number" id="stat-students">0</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <div class="stat-number" id="stat-staff">0</div>
+                    <div class="stat-label">Faculty Members</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="stat-number" id="stat-events">0</div>
+                    <div class="stat-label">Annual Events</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-globe"></i>
+                    <div class="stat-number" id="stat-alumni">0</div>
+                    <div class="stat-label">Alumni Network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About NSKK High School</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>NSKK High School is a premier educational institution dedicated to nurturing young minds and fostering excellence. With a legacy of academic achievement and holistic development, we prepare students for success in higher education and beyond.</p>
+                    <p>Our state-of-the-art facilities, experienced faculty, and student-centric approach create an ideal learning environment.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-book"></i>
+                        <h4>Quality Education</h4>
+                        <p>Comprehensive curriculum with modern teaching methods</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-basketball"></i>
+                        <h4>Sports & Activities</h4>
+                        <p>Various sports and extracurricular programs</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-flask"></i>
+                        <h4>Research Labs</h4>
+                        <p>Advanced laboratory facilities for scientific research</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="admission-section">
+        <div class="container">
+            <h2>Online Admission Portal</h2>
+            <div class="admission-content">
+                <form id="admission-form" class="admission-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" name="full_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Class *</label>
+                            <select name="class_grade" required>
+                                <option value="">Select Class</option>
+                                <option value="IX">Class IX</option>
+                                <option value="X">Class X</option>
+                                <option value="XI">Class XI</option>
+                                <option value="XII">Class XII</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date of Birth *</label>
+                            <input type="date" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Parent's Name *</label>
+                            <input type="text" name="parent_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Parent's Phone *</label>
+                        <input type="tel" name="parent_phone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bus Tracking Section -->
+    <section id="bus-tracking" class="bus-section">
+        <div class="container">
+            <h2>🚌 Real-Time Bus Tracking</h2>
+            <div class="bus-tracking-content">
+                <div class="bus-routes" id="bus-routes">
+                    <!-- Dynamically loaded -->
+                </div>
+                <div class="bus-map">
+                    <div id="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Live Tracking Map</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fees Portal Section -->
+    <section id="fees" class="fees-section">
+        <div class="container">
+            <h2>💳 Fees Portal</h2>
+            <div class="fees-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fee Type</th>
+                            <th>Amount</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fees-tbody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 2rem; color: #999;">
+                                Login to view your fee details
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Library Section -->
+    <section id="library" class="library-section">
+        <div class="container">
+            <h2>📚 Digital Library</h2>
+            <div class="library-filters">
+                <select id="library-category">
+                    <option value="">All Categories</option>
+                    <option value="Fiction">Fiction</option>
+                    <option value="Science">Science</option>
+                    <option value="History">History</option>
+                    <option value="Mathematics">Mathematics</option>
+                </select>
+            </div>
+            <div class="library-books" id="library-books">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <h2>🎉 Upcoming Events</h2>
+            <div class="events-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+            </div>
+            <div class="events-grid" id="events-grid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Alumni Section -->
+    <section id="alumni" class="alumni-section">
+        <div class="container">
+            <h2>🌟 Alumni Network</h2>
+            <div class="alumni-grid" id="alumni-grid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Address</h4>
+                        <p>123 Education Street, City, State 12345</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone</h4>
+                        <p>+91 (123) 456-7890</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>info@nskkhighschool.edu</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>NSKK High School - Fostering Excellence in Education</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#admission">Admission</a></li>
+                        <li><a href="#fees">Fees</a></li>
+                        <li><a href="#events">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NSKK High School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

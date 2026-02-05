@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NSKK High School</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>NSKK Admin</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#dashboard" class="menu-link active" data-tab="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="#students" class="menu-link" data-tab="students"><i class="fas fa-users"></i> Students</a></li>
+            <li><a href="#staff" class="menu-link" data-tab="staff"><i class="fas fa-chalkboard-user"></i> Staff</a></li>
+            <li><a href="#admissions" class="menu-link" data-tab="admissions"><i class="fas fa-file-alt"></i> Admissions</a></li>
+            <li><a href="#fees" class="menu-link" data-tab="fees"><i class="fas fa-coins"></i> Fees</a></li>
+            <li><a href="#bus" class="menu-link" data-tab="bus"><i class="fas fa-bus"></i> Bus Management</a></li>
+            <li><a href="#library" class="menu-link" data-tab="library"><i class="fas fa-book"></i> Library</a></li>
+            <li><a href="#events" class="menu-link" data-tab="events"><i class="fas fa-calendar"></i> Events</a></li>
+            <li><a href="#alumni" class="menu-link" data-tab="alumni"><i class="fas fa-star"></i> Alumni</a></li>
+            <li><a href="#notices" class="menu-link" data-tab="notices"><i class="fas fa-bell"></i> Notices</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="topbar-right">
+                <a href="/" class="btn btn-sm">Back to Home</a>
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="User">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard-tab">
+            <h2>Dashboard Overview</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <div class="card-number" id="dash-students">0</div>
+                        <div class="card-label">Total Students</div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <div>
+                        <div class="card-number" id="dash-staff">0</div>
+                        <div class="card-label">Staff Members</div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-file-alt"></i>
+                    <div>
+                        <div class="card-number" id="dash-admissions">0</div>
+                        <div class="card-label">Pending Admissions</div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-bus"></i>
+                    <div>
+                        <div class="card-number" id="dash-routes">0</div>
+                        <div class="card-label">Active Bus Routes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admissions Tab -->
+        <div class="tab-content" id="admissions-tab">
+            <h2>Admission Applications</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Class</th>
+                        <th>Applied On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="admissions-tbody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Events Tab -->
+        <div class="tab-content" id="events-tab">
+            <h2>Manage Events</h2>
+            <button class="btn btn-primary" onclick="showEventModal()">+ Add Event</button>
+            <div class="events-list" id="events-list"></div>
+        </div>
+
+        <!-- Library Tab -->
+        <div class="tab-content" id="library-tab">
+            <h2>Library Management</h2>
+            <button class="btn btn-primary" onclick="showBookModal()">+ Add Book</button>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody id="library-tbody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Alumni Tab -->
+        <div class="tab-content" id="alumni-tab">
+            <h2>Alumni Directory</h2>
+            <button class="btn btn-primary" onclick="showAlumniModal()">+ Add Alumni</button>
+            <div class="alumni-grid" id="admin-alumni-grid"></div>
+        </div>
+
+        <!-- Notices Tab -->
+        <div class="tab-content" id="notices-tab">
+            <h2>School Notices</h2>
+            <button class="btn btn-primary" onclick="showNoticeModal()">+ Post Notice</button>
+            <div class="notices-list" id="notices-list"></div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add Event</h3>
+            <form id="event-form">
+                <input type="text" placeholder="Event Title" required>
+                <textarea placeholder="Description" rows="4" required></textarea>
+                <input type="datetime-local" required>
+                <input type="text" placeholder="Location" required>
+                <select required>
+                    <option value="sports">Sports</option>
+                    <option value="cultural">Cultural</option>
+                    <option value="academic">Academic</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Create Event</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
